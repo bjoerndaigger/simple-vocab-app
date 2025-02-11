@@ -1,0 +1,8 @@
+<section>
+    <h2>Add Vocabulary</h2>
+    <form (ngSubmit)="submitVocabulary()">
+        <input name="english" [(ngModel)]="vocabulary.english" placeholder="English" required>
+        <input name="german" [(ngModel)]="vocabulary.german" placeholder="German" required>
+        <button type="submit" [disabled]="!vocabulary.english || !vocabulary.german">Add Vocabulary</button>
+      </form>
+</section>
