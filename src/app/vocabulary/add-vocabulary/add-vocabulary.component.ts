@@ -17,7 +17,11 @@ export class AddVocabularyComponent {
   };
 
   submitVocabulary() {
-    console.log(this.vocabulary);
+    this.firebaseService.addVocabularyToDatabase(this.vocabulary);
+    this.clearInputFields();
+  }
+
+  clearInputFields() {
     this.vocabulary.english = '';
     this.vocabulary.german = '';
   }
