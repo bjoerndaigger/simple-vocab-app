@@ -30,7 +30,10 @@ export class VocabularyListComponent {
   }
 
   saveEdit() {
-    console.log(this.vocabularyId, this.editedVocabulary);
+    if (this.vocabularyId) {
+      this.firebaseService.updateVocabularyInDatabase(this.vocabularyId, this.editedVocabulary);
+    }
+    this.cancelEdit();
   }
 
   cancelEdit() {
