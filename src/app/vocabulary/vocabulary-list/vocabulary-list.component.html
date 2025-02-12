@@ -1,6 +1,16 @@
 <section>
     <h2>Vocabulary List</h2>
     @for (item of firebaseService.vocabularyList; track $index) {
-    <p>{{ item.english }} - {{ item.german }} </p>
+    @if(!isEdited) {
+    <p>{{ item.english }} - {{ item.german }} <button (click)="editVocabulary($index)">Edit</button></p>
+    }
+    }
+    @if(isEdited && selectedVocabularyIndex !== null) {
+    <form (ngSubmit)="saveEdit()">
+        <input type="text" [(ngModel)]="editedVocabulary.english" name="english" />
+        <input type="text" [(ngModel)]="editedVocabulary.german" name="german" />
+        <button type="submit" [disabled]="!editedVocabulary.english || !editedVocabulary.german">Save</button>
+        <button type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
     }
 </section>
