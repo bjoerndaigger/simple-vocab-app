@@ -2,7 +2,7 @@
     <h2>Vocabulary List</h2>
     @for (item of firebaseService.vocabularyList; track $index) {
     @if(!isEdited) {
-    <p>{{ item.english }} - {{ item.german }} <button (click)="editVocabulary($index)">Edit</button></p>
+    <p>{{ item.english }} - {{ item.german }} <button (click)="editVocabulary($index)">Edit</button><button (click)="deleteVocabulary($index)">Delete</button></p>
     }
     }
     @if(isEdited && selectedVocabularyIndex !== null) {

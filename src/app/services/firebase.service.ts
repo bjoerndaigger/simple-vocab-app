@@ -1,12 +1,12 @@
 import { Injectable, inject, OnDestroy } from '@angular/core';
-import { Firestore, collection, onSnapshot, addDoc, updateDoc, doc } from '@angular/fire/firestore';
+import { Firestore, collection, onSnapshot, addDoc, updateDoc, doc, deleteDoc } from '@angular/fire/firestore';
 import { VocabularyInterface } from '../interfaces/vocabulary-interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService implements OnDestroy {
-  firestore: Firestore = inject(Firestore);
+  firestore = inject(Firestore);
   unsubscribe: () => void;
   vocabularyList: VocabularyInterface[] = [];
 
@@ -37,6 +37,10 @@ export class FirebaseService implements OnDestroy {
       english: vocabulary.english,
       german: vocabulary.german
     });
+  }
+
+  async deleteVocabularyFromDatabase(id: string) {
+    await deleteDoc(doc(this.firestore, 'vocabulary', id));
   }
 
   ngOnDestroy() {

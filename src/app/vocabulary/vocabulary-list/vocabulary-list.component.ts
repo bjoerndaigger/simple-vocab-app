@@ -41,4 +41,11 @@ export class VocabularyListComponent {
     this.selectedVocabularyIndex = null;
     this.vocabularyId = '';
   }
+
+  deleteVocabulary(index: number) {
+    this.vocabularyId = this.firebaseService.vocabularyList[index].id;
+    if (this.vocabularyId) {
+      this.firebaseService.deleteVocabularyFromDatabase(this.vocabularyId);
+    }
+  }
 }
